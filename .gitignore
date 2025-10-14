@@ -1,0 +1,35 @@
+*.iml
+.kotlin
+.gradle
+**/build/
+xcuserdata
+!src/**/build/
+local.properties
+.idea
+.DS_Store
+captures
+.externalNativeBuild
+.cxx
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
+node_modules/
+
+# Backend logs
+backend/logs/
+*.log
+
+# Database
+*.db
+*.sql~
+
+# Environment variables (production only)
+.env
+.env.local
+.env.production
+
+# Docker volumes
+postgres_data/

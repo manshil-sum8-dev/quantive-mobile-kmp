@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: quantive-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: quantive_dev
+      POSTGRES_USER: quantive
+      POSTGRES_PASSWORD: quantive_dev_pass
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U quantive -d quantive_dev"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - quantive-network
+
+  # Uncomment when ready to containerize the backend
+  # backend:
+  #   build:
+  #     context: ./backend
+  #     dockerfile: Dockerfile
+  #   container_name: quantive-backend
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8080:8080"
+  #   environment:
+  #     DATABASE_HOST: postgres
+  #     DATABASE_PORT: 5432
+  #     DATABASE_NAME: quantive_dev
+  #     DATABASE_USER: quantive
+  #     DATABASE_PASSWORD: quantive_dev_pass
+  #     JWT_SECRET: dev_secret_change_in_production
+  #     JWT_ISSUER: quantive
+  #     JWT_AUDIENCE: quantive-api
+  #     JWT_REALM: Quantive API
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #   networks:
+  #     - quantive-network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  quantive-network:
+    driver: bridge
