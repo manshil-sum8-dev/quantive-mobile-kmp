@@ -10,6 +10,12 @@ import kotlinx.serialization.Serializable
 sealed interface NavigationRoute {
 
     /**
+     * Landing screen route - showcases Material 3 Expressive design
+     */
+    @Serializable
+    data object Landing : NavigationRoute
+
+    /**
      * Example screen route
      */
     @Serializable

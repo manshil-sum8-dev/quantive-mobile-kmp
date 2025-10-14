@@ -8,15 +8,16 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import za.co.quantive.app.navigation.NavigationGraph
+import za.co.quantive.app.ui.theme.QuantiveExpressiveTheme
 
 /**
  * Main application composable
- * Sets up the theme and navigation
+ * Sets up the Material 3 Expressive theme and navigation
  */
 @Composable
 @Preview
 fun App() {
-    MaterialTheme {
+    QuantiveExpressiveTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.background
